@@ -28,3 +28,6 @@ def faqs(request):
     return render(request, 'main/faqs.html')
 
 
+def log_reg(request):
+    return render(request, 'main/log_reg.html')
+
