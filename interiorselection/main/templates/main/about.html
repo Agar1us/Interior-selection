@@ -1,0 +1,56 @@
+{% extends 'main/base.html '%}
+
+{% block title %}
+Что-то написано
+{% endblock %}
+{% block links %}
+                <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
+                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-dark">Кабинеты</a></li>
+                <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
+                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+                <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-secondary">Контакты</a></li>
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="py-5 text-left container">
+            <div class = "layer1">
+                <div class="row-xl-6 py-lg-auto">
+                    <div class=".col-xl-6 col-md-auto mx-3">
+                        <h1 class="fw-dark">Это наша команда:</h1>
+                        <p class="lead text-dark"> </p>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static">
+                                        <strong class="d-inline-block mb-2 text-primary">BackEnd</strong>
+                                        <h3 class="mb-0">Группа Бэкэндеров</h3>
+                                        <div class="mb-1 text-muted">Студенты РТУ МИРЭА</div>
+                                        <p class="card-text-center mb-auto">Здесь будет что-то написано</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static">
+                                        <strong class="d-inline-block mb-2 text-danger">FrontEnd</strong>
+                                        <h3 class="mb-0">Группа Фронтендеров</h3>
+                                        <div class="mb-1 text-muted">Студенты РТУ МИРЭА</div>
+                                        <p class="card-text-center mb-auto">Здесь будет что-то написано</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative d-lg-block">
+                                <svg class="bd-placeholder-img" width="905" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title> </title><rect width="100%" height="100%" fill="#ffffff"></rect><text x="3%" y="20%" fill="#000000" dy=".3em">Что-то о проекте</text></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+{% endblock %}

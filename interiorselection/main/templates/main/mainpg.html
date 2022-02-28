@@ -1,0 +1,30 @@
+{% extends 'main/base.html '%}
+
+{% block title %}
+Страница про кабинеты
+{% endblock %}
+{% block links %}
+                <li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Главная</a></li>
+                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-dark">Кабинеты</a></li>
+                <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
+                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+                <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-6">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-dark">Это тестовый шаблон</h1>
+                    <p class="lead text-dark">Безусловно все будет перерабатываться и доделываться, но направление развитию задано, нужно двигаться вперед!</p>
+                    <p>
+                        <a href="{% url 'cabinets' %}" class="btn btn-primary my-2">Посмотреть кабинеты</a>
+<!--                        btn-secondary-->
+                        <a href="{% url 'stock' %}" class="btn btn-primary my-2">Посмотреть инвентарь</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}
