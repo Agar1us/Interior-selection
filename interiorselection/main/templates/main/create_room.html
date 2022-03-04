@@ -1,7 +1,7 @@
 {% extends 'main/base.html '%}
 
 {% block title %}
-Страница про кабинеты
+Страница для добавления кабинета
 {% endblock %}
 {% block links %}
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
@@ -15,9 +15,13 @@
         <section class="py-5 text-center container">
             <div class="row py-lg-6">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-dark">Кабинеты</h1>
-                    <a href="{% url 'create_room' %}" class="nav-link px-2 link-dark"> Добавить запись </a>
+                    <h1 class="fw-dark">Добавить комнату</h1>
                 </div>
+                <form enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-succes" type="sumbit">Добавить комнату</button>
+                </form>
                 <p>
                     <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
                 </p>

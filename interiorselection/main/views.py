@@ -1,7 +1,6 @@
-from django.shortcuts import render
-
-from django.shortcuts import render
-from django.http import HttpResponse
+from .forms import *
+from .models import *
+from django.shortcuts import render, redirect
 
 
 def index(request):
@@ -31,3 +30,18 @@ def faqs(request):
 def log_reg(request):
     return render(request, 'main/log_reg.html')
 
+def create_room(request):
+
+    if request.method == 'POST':
+        form = RoomsForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(form.cleaned_data)
+            try:
+                Rooms.objects.create(**form.cleaned_data)
+                return redirect('cabinets')
+            except:
+                form.add_error(None, 'Ошибка добавления комнаты')
+    else:
+        form = RoomsForm
+
+    return render(request, 'main/create_room.html', {'form': form })
