@@ -33,15 +33,15 @@ def log_reg(request):
 def create_room(request):
 
     if request.method == 'POST':
-        form = RoomsForm(request.POST, request.FILES)
+        form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             print(form.cleaned_data)
             try:
-                Rooms.objects.create(**form.cleaned_data)
+                Room.objects.create(**form.cleaned_data)
                 return redirect('cabinets')
             except:
                 form.add_error(None, 'Ошибка добавления комнаты')
     else:
-        form = RoomsForm
+        form = RoomForm
 
     return render(request, 'main/create_room.html', {'form': form })
