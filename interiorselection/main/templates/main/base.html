@@ -23,10 +23,14 @@
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"> <!-- Навигация по сайту -->
                 {% block links %}{% endblock %}
             </ul>
-
             <div class="col-md-3 text-end"> <!-- Логинка  -->
-                <a href="{% url 'log_reg' %}" class="btn btn-outline-primary me-2">Login</a>
-                <a href="{% url 'log_reg' %}" class="btn btn-primary">Sign-up</a>
+                {% if user.is_authenticated %}
+                    <p>Hi {{ user.username }}!</p>
+                    <p><a href="{% url 'logout' %}">Log out</a></p>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="{% url 'signup' %}" class="btn btn-primary">Sign-up</a>
+                {% endif %}
             </div>
         </header>
     </div>
