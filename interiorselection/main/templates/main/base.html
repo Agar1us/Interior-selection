@@ -24,9 +24,12 @@
                 {% block links %}{% endblock %}
             </ul>
             <div class="col-md-3 text-end"> <!-- Логинка  -->
-                {% if user.is_authenticated %}x`
-                    <p>Hi {{ user.username }}!</p>
-                    <p><a href="{% url 'logout' %}">Log out</a></p>
+                {% if user.is_authenticated %}
+                    <a class = "btn btn-outline-primary">
+<!--                        rounded border border-success-->
+                        Hi {{ user.username }}!
+                    </a>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-danger">Log out</a>
                 {% else %}
                     <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
                     <a href="{% url 'signup' %}" class="btn btn-primary">Sign-up</a>
