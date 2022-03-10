@@ -6,15 +6,16 @@
 {% block content %}
     <section class="py-5 text-start container">
         <div class="row-lg-6 col-md-0 mx-auto">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <br><button type="submit" class="btn btn-primary">Log In</button>
-            </form>
+                    <form method="post">
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <button type="submit" class="btn btn-primary">Sign up</button>
+                    </form>
         </div>
         <br><p>
             <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
         </p>
     </section>
-
 {% endblock %}
