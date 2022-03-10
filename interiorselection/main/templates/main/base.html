@@ -24,7 +24,7 @@
                 {% block links %}{% endblock %}
             </ul>
             <div class="col-md-3 text-end"> <!-- Логинка  -->
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated %}x`
                     <p>Hi {{ user.username }}!</p>
                     <p><a href="{% url 'logout' %}">Log out</a></p>
                 {% else %}
