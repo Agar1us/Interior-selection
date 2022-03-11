@@ -1,6 +1,10 @@
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views import View
 from .forms import *
 from .models import *
 from django.shortcuts import render, redirect
+
 
 
 def index(request):
@@ -26,17 +30,37 @@ def stock(request):
 def faqs(request):
     return render(request, 'main/faqs.html')
 
+class DisplacementView(View):
+    # @method_decorator(login_required)
+    def post(self, request):
+        object = request.POST.get('object')
+        if object == None:
+            displace = Displacement.objects.all()
+        else:
+            displace = Displacement.objects.filter(object__name=object)
+        return render(request, 'main/displacement.html', {'displace': displace, 'object': object})
 
-def create_room(request):
-    if request.method == 'POST':
-        form = RoomsForm(request.POST, request.FILES)
+    # @method_decorator(login_required)
+    def get(self, request):
+        object = None
+        displace = Displacement.objects.all()
+        return render(request, 'main/displacement.html', {'displace': displace, 'object': object})
+
+class CreateRoomView(View):
+    # @method_decorator(login_required)
+    def post(self, request):
+        error = ''
+        form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
-            print(form.cleaned_data)
-            try:
-                Rooms.objects.create(**form.cleaned_data)
-                return redirect('cabinets')
-            except:
-                form.add_error(None, 'Ошибка добавления комнаты')
-    else:
-        form = RoomsForm
-    return render(request, 'main/create_room.html', {'form': form})
+            form.save()
+            return redirect('cabinets')
+        else:
+            error = 'Ошибка добавления записи'
+            form = RoomForm()
+            return render(request, 'main/create_room.html', {'form': form, 'error': error})
+
+    # @method_decorator(login_required)
+    def get(self, request):
+        form = RoomForm()
+        error = ''
+        return render(request, 'main/create_room.html', {'form': form, 'error': error})
