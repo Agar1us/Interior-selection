@@ -1,14 +1,21 @@
 from .models import *
-from django import forms
+from django.forms import ModelForm, TextInput, Textarea
 
-class RoomForm(forms.Form):
 
-    name = forms.CharField(max_length=50, label='Предмет')
-    description = forms.CharField(label='Описание предмета', required=False)
-    image = forms.ImageField(label='Фотография комнаты', required=False)
+class RoomForm(ModelForm):
 
-class InteriorForm(forms.Form):
+    class Meta:
+        model = Room
+        fields = ['name', 'description', 'image']
+        widgets = {}
 
-    name = forms.CharField(max_length=50, label='Предмет')
-    description = forms.CharField(label='Описание предмета', required=False)
-    room = forms.ModelChoiceField(label='Комната', queryset=Room.objects.exclude(exist=False))
+class InteriorForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(RoomForm, self).__init__(*args, **kwargs)
+        self.fields['room'].queryset = Room.objects.exclude(exist=False)
+
+    class Meta:
+        model = Interior
+        fields = ['name', 'description', 'room']
+        widgets = {}

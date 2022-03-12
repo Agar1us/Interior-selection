@@ -1,0 +1,59 @@
+{% extends 'main/base.html '%}
+
+{% block title %}
+Страница для добавления кабинета
+{% endblock %}
+{% block links %}
+                <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
+                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
+                <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
+                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+                <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="py-5 text-center container col-lg-8">
+            <div class="row py-lg">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-dark">Перемещения предметов</h1>
+                </div>
+                {% if displace %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Предмет</th>
+                              <th scope="col">Откуда</th>
+                              <th scope="col">Куда</th>
+                              <th scope="col">Дата и время</th>
+                            </tr>
+                          </thead>
+                            <tbody>
+                        {% for el in displace %}
+                            <tr>
+                                <td><button class="btn btn-light" style="padding:0" type="submit" name="object" value="{{el.object.name}}">{{el.object.name}}</button></td>
+                                <td class="table-light">{{el.to_room.name}}</td>
+                                <td class="table-light">{{el.from_room.name}}</td>
+                                <td class="table-light">{{el.date}}</td>
+                            </tr>
+                        {% endfor %}
+                            </tbody>
+                        </table>
+                    </form>
+                {% else %}
+                        <p>Нет записей об перемещениях</p>
+                {% endif %}
+                <p>
+                    <form method="get">
+                        <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
+                        {% if object != None %}
+                            <button class="btn btn-secondary my-2" type="submit" name="object" value="None">Вернуться</button>
+                        {% endif %}
+                    </form>
+                </p>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}

@@ -19,7 +19,12 @@
                 </div>
                 <form enctype="multipart/form-data" method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form.name }}<br>
+                    {{ form.description }}<br>
+                    {{ form.image }}<br>
+                    {% if error != ''%}
+                        <p>{{error}}</p>
+                    {% endif %}
                     <button class="btn btn-succes" type="sumbit">Добавить комнату</button>
                 </form>
                 <p>
