@@ -7,7 +7,7 @@
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
                 <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-dark">Кабинеты</a></li>
                 <li><a href="{% url 'stock' %}" class="nav-link px-2 link-secondary">Инвентарь</a></li>
-                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
                 <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
 {% endblock %}
 {% block content %}
@@ -16,9 +16,10 @@
             <div class="row py-lg-6">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-dark">Инвентарь</h1>
+                    <a href="{% url 'stock' %}" class="btn btn-outline-primary my-2" style="width: 150; height: 40"> Добавить запись </a>
                 </div>
                 <p>
-                    <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
                 </p>
             </div>
         </section>

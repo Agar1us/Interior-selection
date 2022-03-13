@@ -7,7 +7,7 @@
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
                 <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
                 <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
-                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
                 <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
 {% endblock %}
 {% block content %}
@@ -19,11 +19,18 @@
                 </div>
                 <form enctype="multipart/form-data" method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="btn btn-succes" type="sumbit">Добавить комнату</button>
+                    <div class="container py-lg-3">
+                        <div class="row ">
+                            <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm">
+                                {{ form.as_p }}
+                                <button class="btn btn-primary my-3" type="sumbit">Добавить комнату</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
-                <p>
-                    <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
+                <p class="py-3">
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
                 </p>
             </div>
         </section>

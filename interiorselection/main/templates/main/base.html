@@ -8,14 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <!--  CSS Bootstrap5 link -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!--  Заголовок страницы  -->
     <title>{% block header_title %}{% endblock %}</title>
 
 </head>
 <body>
 <!-- Контейнер -->
-    <div class="container">
+    <div class="container"> <!-- Ниже хэдер -->
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <a href="{% url 'home' %}" class="d-flex align-items-center col-md-3 mb-3 mb-md-0 text-dark text-decoration-none">
                 <p>OZ</p> <!-- Логотип, пока буквенный -->
@@ -25,20 +26,34 @@
             </ul>
             <div class="col-md-3 text-end"> <!-- Логинка  -->
                 {% if user.is_authenticated %}
-                    <a class = "btn btn-outline-primary">
-<!--                        rounded border border-success-->
-                        Hi {{ user.username }}!
-                    </a>
-                    <a href="{% url 'logout' %}" class="btn btn-outline-danger">Log out</a>
+                    <div class = "badge border border-outline border-2 text-wrap text-dark">
+                        <h6 class="text-center">Hi {{ user.username }}!</h6>
+                    </div>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-danger">Выйти</a>
                 {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Login</a>
-                    <a href="{% url 'signup' %}" class="btn btn-primary">Sign-up</a>
+                    <a href="{% url 'signup' %}" class="btn btn-primary">Регистрация</a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Войти</a>
                 {% endif %}
             </div>
         </header>
     </div>
     {% block content %}{% endblock %}
+    <div class="container"> <!-- Ниже футер -->
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+                <span class="text-muted">© 2022 ИКБО-05-21, РТУ МИРЭА</span>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+                <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+            </ul>
+        </footer>
+    </div>
 <!-- Ссылка на скрипты -->
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
-</body>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script></body>
 </html>

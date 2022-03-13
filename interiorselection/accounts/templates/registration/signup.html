@@ -6,16 +6,23 @@
 {% block content %}
     <section class="py-5 text-start container">
         <div class="row-lg-6 col-md-0 mx-auto">
-                    <form method="post">
-
+                <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <br>
-                    <button type="submit" class="btn btn-primary">Sign up</button>
-                    </form>
+                    <div class="container">
+                        <div class="row text-start">
+                            <div class="col-md-8 p-2 py-3 offset-md-2 border border-2 rounded shadow-sm">
+                                {{ form.as_p }}
+                                <div class="py-2 text-center">
+                                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+               </form>
         </div>
-        <br><p>
-            <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
+        <p class=" py-2 text-center">
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
         </p>
     </section>
 {% endblock %}

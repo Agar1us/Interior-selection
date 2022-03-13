@@ -7,7 +7,7 @@
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
                 <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
                 <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
-                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
                 <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
 {% endblock %}
 {% block content %}
@@ -16,10 +16,26 @@
             <div class="row py-lg-6">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-dark">Кабинеты</h1>
-                    <a href="{% url 'create_room' %}" class="nav-link px-2 link-dark"> Добавить запись </a>
+                        {% if user.is_authenticated %}
+                            <div class="dropdown py-4">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Редактирование кабинетов
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                                    <li><a class="dropdown-item active" href="{% url 'create_room' %}">Добавить комнату</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'cabinets' %}">Редактировать содержимое</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'cabinets' %}">Удалить комнату</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'cabinets' %}">Обновить страницу</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <a href="{% url 'create_room' %}" class="btn btn-outline-primary my-2" style="width: 150; height: 40"> Добавить запись </a>
+                        {% endif %}
                 </div>
-                <p>
-                    <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
+<!--            Добавить здесь if о том, есть ли что-то в таблице или нет    -->
+                <p class="py-2">
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
                 </p>
             </div>
         </section>

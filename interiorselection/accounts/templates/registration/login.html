@@ -8,13 +8,22 @@
         <div class="row-lg-6 col-md-0 mx-auto">
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <br><button type="submit" class="btn btn-primary">Log In</button>
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-md-4 p-2 py-3 offset-md-4 border border-2 rounded shadow-sm">
+                            {{ form.as_p }}
+                            <div class="py-2 text-center">
+                                <button type="submit" class="btn btn-primary">Войти</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </form>
         </div>
-        <br><p>
-            <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
+        <br><p class="text-center">
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
         </p>
     </section>
-
 {% endblock %}
