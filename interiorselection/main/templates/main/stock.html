@@ -24,7 +24,7 @@
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
                                     <li><a class="dropdown-item active" href="{% url 'create_room' %}">Добавить инвентарь</a></li>
                                     <li><a class="dropdown-item" href="{% url 'cabinets' %}">Редактировать инвентарь</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'displacement' %}"></a>Просмотр переходов</li>
+                                    <li><a class="dropdown-item" href="{% url 'displacement' %}">Просмотр переходов</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'cabinets' %}">Обновить страницу</a></li>
                                 </ul>
@@ -34,6 +34,8 @@
                         {% endif %}
 <!--                    <a href="{% url 'stock' %}" class="btn btn-outline-primary my-2" style="width: 150; height: 40"> Добавить запись </a>-->
                 </div>
+
+
 
                 <p>
                     <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>

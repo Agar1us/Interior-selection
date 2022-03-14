@@ -9,6 +9,7 @@ class RoomForm(ModelForm):
         fields = ['name', 'description', 'image']
         widgets = {}
 
+
 class InteriorForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
