@@ -23,14 +23,13 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
                                     <li><a class="dropdown-item active" href="{% url 'create_room' %}">Добавить комнату</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'cabinets' %}">Редактировать содержимое</a></li>
                                     <li><a class="dropdown-item" href="{% url 'cabinets' %}">Удалить комнату</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'cabinets' %}">Обновить страницу</a></li>
                                 </ul>
                             </div>
                         {% else %}
-                            <a href="{% url 'create_room' %}" class="btn btn-outline-primary my-2" style="width: 150; height: 40"> Добавить запись </a>
+<!--                            <a href="{% url 'create_room' %}" class="btn btn-outline-primary my-2" style="width: 150; height: 40"> Добавить запись </a>-->
                         {% endif %}
                 </div>
 <!--            Добавить здесь if о том, есть ли что-то в таблице или нет    -->
