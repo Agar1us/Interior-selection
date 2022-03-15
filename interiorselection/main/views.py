@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.generic import ListView
 from .forms import *
 from .models import *
 from django.shortcuts import render, redirect
@@ -20,10 +21,6 @@ def mainpg(request):
 
 def cabinets(request):
     return render(request, 'main/cabinets.html')
-
-
-def stock(request):
-    return render(request, 'main/stock.html')
 
 
 def faqs(request):
@@ -63,3 +60,11 @@ class CreateRoomView(View):
         form = RoomForm()
         error = ''
         return render(request, 'main/create_room.html', {'form': form, 'error': error})
+
+
+class ListObjects(ListView):
+    model = Interior
+    template_name = 'main/stock.html'
+
+    def get_queryset(self):
+        return Interior.objects.filter(exist=True)

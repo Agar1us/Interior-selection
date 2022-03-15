@@ -5,6 +5,5 @@ from .models import Room
 
 admin.site.register(Room)
 
-admin.site.register(Room)
 admin.site.register(Displacement)
 admin.site.register(Interior)

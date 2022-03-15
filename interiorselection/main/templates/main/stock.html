@@ -1,41 +1,48 @@
 {% extends 'main/base.html '%}
 
 {% block title %}
-Страница про инвентарь
+Страница для добавления кабинета
 {% endblock %}
 {% block links %}
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
-                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-dark">Кабинеты</a></li>
-                <li><a href="{% url 'stock' %}" class="nav-link px-2 link-secondary">Инвентарь</a></li>
-<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
+                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
+                <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
+                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
                 <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
 {% endblock %}
 {% block content %}
     <main>
-        <section class="py-5 text-center container">
-            <div class="row py-lg-6">
+        <section class="py-5 text-center container col-lg-8">
+            <div class="row py-lg">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-dark">Инвентарь</h1>
-                        {% if user.is_authenticated %}
-                            <div class="dropdown py-4">
-                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Редактирование кабинетов
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
-                                    <li><a class="dropdown-item active" href="{% url 'create_room' %}">Добавить инвентарь</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'cabinets' %}">Редактировать инвентарь</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'displacement' %}"></a>Просмотр переходов</li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="{% url 'cabinets' %}">Обновить страницу</a></li>
-                                </ul>
-                            </div>
-                        {% else %}
-<!--                            <a href="{% url 'create_room' %}" class="btn btn-outline-primary my-2" style="width: 150; height: 40"> Добавить запись </a>-->
-                        {% endif %}
-<!--                    <a href="{% url 'stock' %}" class="btn btn-outline-primary my-2" style="width: 150; height: 40"> Добавить запись </a>-->
+                    <h1 class="fw-dark">Список объектов интерьера</h1>
                 </div>
-
-                <p>
+                {% if object_list %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <table class="table">
+                          <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Название предмета</th>
+                                <th scope="col">Кабинет, в котором находится</th>
+                            </tr>
+                          </thead>
+                            <tbody>
+                        {% for el in object_list %}
+                            <tr>
+                                <td><button class="btn btn-light" style="padding:0" type="submit" name="object" value="{{el.id}}">{{el.id}}</button></td>
+                                <td class="table-light">{{el.name}}</td>
+                                <td class="table-light">{{el.room}}</td>
+                            </tr>
+                        {% endfor %}
+                            </tbody>
+                        </table>
+                    </form>
+                {% else %}
+                        <p>Нету созданных предметов интерьера</p>
+                {% endif %}
+                <p class="py-2">
                     <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
                 </p>
             </div>
