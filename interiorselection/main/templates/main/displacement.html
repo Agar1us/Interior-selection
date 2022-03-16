@@ -23,16 +23,18 @@
                         <table class="table">
                           <thead>
                             <tr>
-                              <th scope="col">Предмет</th>
-                              <th scope="col">Откуда</th>
-                              <th scope="col">Куда</th>
-                              <th scope="col">Дата и время</th>
+                                <th scope="col">Уникальный номер</th>
+                                <th scope="col">Предмет</th>
+                                <th scope="col">Откуда</th>
+                                <th scope="col">Куда</th>
+                                <th scope="col">Дата и время</th>
                             </tr>
                           </thead>
                             <tbody>
                         {% for el in displace %}
                             <tr>
-                                <td><button class="btn btn-light" style="padding:0" type="submit" name="object" value="{{el.object.name}}">{{el.object.name}}</button></td>
+                                <td><button class="btn btn-light" style="padding:0" type="submit" name="id" value="{{el.object.id}}">{{el.object.id}}</button></td>
+                                <td class="table-light">{{el.object.name}}</td>
                                 <td class="table-light">{{el.to_room.name}}</td>
                                 <td class="table-light">{{el.from_room.name}}</td>
                                 <td class="table-light">{{el.date}}</td>
@@ -47,8 +49,8 @@
                 <p>
                     <form method="get">
                         <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
-                        {% if object != None %}
-                            <button class="btn btn-secondary my-2" type="submit" name="object" value="None">Вернуться</button>
+                        {% if id != None %}
+                            <button class="btn btn-secondary my-2" type="submit">Вернуться</button>
                         {% endif %}
                     </form>
                 </p>

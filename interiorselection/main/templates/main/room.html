@@ -1,0 +1,72 @@
+{% extends 'main/base.html '%}
+{% load static %}
+{% block title %}
+Страница про кабинеты
+{% endblock %}
+{% block links %}
+                <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
+                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
+                <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
+<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
+                <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="py-5 text-center container">
+            <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm">
+                <div class="row">
+                    <div class="col">
+                        {% if room.image %}
+                            <img src="{{room.image.url}}" class="img-thumbnail" height="200px" width="200px" alt="Фотография комнаты">
+                        {% else %}
+                            <img src="{% static 'image_none.jpg' %}" class="img-thumbnail" height="200px" width="200px" alt="Фотография комнаты">
+                        {% endif %}
+                    </div>
+                    <div class="col">
+                        <div>
+                            <h1 class="fw-dark">{{room.name}}</h1>
+                        {% if user.is_authenticated %}
+                            <div class="dropdown">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Изменить комнату</button>
+                                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                                        <li><button class="dropdown-item" type="submit" name="update" value="True">Редактирование комнаты</button></li>
+                                        <li><button class="dropdown-item" type="submit" name="delete" value="True">Удалить комнату</button></li>
+                                    </ul>
+                                </form>
+                            </div>
+                        {% endif %}
+                        </div>
+                        {% if room.description %}
+                            <div class="py-3">
+                                <textarea class="form-control" style="resize: none" id="exampleFormControlTextarea5" rows="3" disabled>{{room.description}}</textarea>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm">
+                {% if interior %}
+                    <h1>Предметы в кабинете</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Уникальный номер</th>
+                                <th scope="col">Предмет</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for el in interior %}
+                            <tr>
+                                <td class="table-light align-middle">{{el.id}}</td>
+                                <td class="table-light text-break align-middle">{{el.name}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+             </div>
+        </section>
+    </main>
+{% endblock %}

@@ -1,13 +1,24 @@
 from .models import *
-from django.forms import ModelForm, TextInput, Textarea
-
+from django.forms import ModelForm, TextInput, Textarea, FileInput, CheckboxInput
 
 class RoomForm(ModelForm):
 
     class Meta:
         model = Room
         fields = ['name', 'description', 'image']
-        widgets = {}
+        widgets = {
+            'name': TextInput(attrs={
+                'class': 'form-control py-1',
+            }),
+            'description': Textarea(attrs={
+                'class': 'form-control py-1',
+                'cols': '40',
+                'rows': '7'
+            }),
+            'image': CheckboxInput(attrs={
+                'class': 'form-control py-1',
+            }),
+        }
 
 class InteriorForm(ModelForm):
 
@@ -18,4 +29,16 @@ class InteriorForm(ModelForm):
     class Meta:
         model = Interior
         fields = ['name', 'description', 'room']
-        widgets = {}
+        widgets = {
+            'name': TextInput(attrs={
+                'class': 'form-control py-1',
+            }),
+            'description': Textarea(attrs={
+                'class': 'form-control py-1',
+                'cols': '40',
+                'rows': '7'
+            }),
+            'room': FileInput(attrs={
+                'class': 'form-control py-1',
+            }),
+        }
