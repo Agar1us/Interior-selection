@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import ListView
+from django.urls import reverse
 from .forms import *
 from .models import *
 from django.shortcuts import render, redirect
@@ -62,9 +63,28 @@ class CreateRoomView(View):
         return render(request, 'main/create_room.html', {'form': form, 'error': error})
 
 
-class ListObjects(ListView):
+class ListInterior(ListView):
     model = Interior
     template_name = 'main/stock.html'
 
     def get_queryset(self):
         return Interior.objects.filter(exist=True)
+
+
+class DetailInterior(View):
+    context = {}
+
+    def get(self, request, id):
+        interior = Interior.objects.filter(id=id, exist=True)
+        self.context['exist'] = True
+        if interior is None:
+            self.context['exist'] = False
+        else:
+            self.context['object'] = interior
+        return redirect(request, 'main/detail_interior.html', self.context)
+
+    def post(self, request, id):
+        if (request.POST.get('delete')):
+            return redirect(reverse('delete_room', kwargs={'id': id}))
+        if (request.POST.get('update')):
+            return redirect(reverse('update_room', kwargs={'id': id}))
