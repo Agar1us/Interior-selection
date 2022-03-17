@@ -1,5 +1,3 @@
-import os
-
 from django.urls import reverse
 from django.views import View
 from .forms import *
@@ -12,17 +10,25 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'main/index.html')
 
+
 def about(request):
+    rooms = Room.objects.all()
+    for el in rooms:
+        print(str(el.id) + str(el.name))
     return render(request, 'main/about.html')
+
 
 def mainpg(request):
     return render(request, 'main/mainpg.html')
 
+
 def stock(request):
     return render(request, 'main/stock.html')
 
+
 def faqs(request):
     return render(request, 'main/faqs.html')
+
 
 class CabinetsView(View):
 
@@ -33,6 +39,7 @@ class CabinetsView(View):
     def get(self, request):
         rooms = Room.objects.exclude(exist=False)
         return render(request, 'main/cabinets.html', {'rooms': rooms})
+
 
 class RoomView(View):
 
@@ -48,6 +55,7 @@ class RoomView(View):
             return redirect(reverse('delete_room', kwargs={'id': id}))
         if (request.POST.get('update')):
             return redirect(reverse('update_room', kwargs={'id': id}))
+
 
 class CreateRoomView(View):
 
@@ -67,6 +75,7 @@ class CreateRoomView(View):
         form = RoomForm()
         error = ''
         return render(request, 'main/create_room.html', {'form': form, 'error': error})
+
 
 class UpdateRoomView(View):
 
@@ -95,14 +104,24 @@ class UpdateRoomView(View):
         room = get_object_or_404(rooms, id=id)
         return render(request, 'main/update_room.html', {'room': room})
 
+
 class DeleteRoomView(View):
 
     @method_decorator(login_required)
     def get(self, request, id):
-        room = Room.objects.get(id=id)
-        room.exist = 0
+        room = get_object_or_404(Room, id=id)
+        if room.name == 'Склад':
+            return redirect('cabinets')
+        room.exist = False
         room.save()
+        store, created = Room.objects.get_or_create(name='Склад', defaults={'description': 'Помещение для хранения предметов, непривязанных к комнате'})
+        interior = Interior.objects.filter(room__id=id)
+        for el in interior:
+            el.room = store
+            el.save()
+            Displacement.objects.create(object=el, from_room=room, to_room=store)
         return redirect('cabinets')
+
 
 class DisplacementView(View):
 

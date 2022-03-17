@@ -17,9 +17,9 @@
                 <div class="row">
                     <div class="col">
                         {% if room.image %}
-                            <img src="{{room.image.url}}" class="img-thumbnail" height="200px" width="200px" alt="Фотография комнаты">
+                            <img src="{{room.image.url}}" class="img-thumbnail" alt="Фотография комнаты">
                         {% else %}
-                            <img src="{% static 'image_none.jpg' %}" class="img-thumbnail" height="200px" width="200px" alt="Фотография комнаты">
+                            <img src="{% static 'image_none.jpg' %}" class="img-thumbnail" alt="Фотография комнаты">
                         {% endif %}
                     </div>
                     <div class="col">

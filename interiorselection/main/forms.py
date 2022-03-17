@@ -15,7 +15,7 @@ class RoomForm(ModelForm):
                 'cols': '40',
                 'rows': '7'
             }),
-            'image': CheckboxInput(attrs={
+            'image': FileInput(attrs={
                 'class': 'form-control py-1',
             }),
         }
@@ -38,7 +38,7 @@ class InteriorForm(ModelForm):
                 'cols': '40',
                 'rows': '7'
             }),
-            'room': FileInput(attrs={
+            'room': CheckboxInput(attrs={
                 'class': 'form-control py-1',
             }),
         }
