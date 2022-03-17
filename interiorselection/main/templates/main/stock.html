@@ -32,8 +32,8 @@
                         {% for el in object_list %}
                             <tr>
                                 <td><button class="btn btn-light" style="padding:0" type="submit" name="object" value="{{el.id}}">{{el.id}}</button></td>
-                                <td class="table-light"><a href="{% url 'stock' el.id %}" class="nav-link px-2 link-dark">{{el.name}}</a></td>
-                                <td class="table-light"><a href="{% url 'stock' el.id %}" class="nav-link px-2 link-dark">{{el.room}}</a></td>
+                                <td class="table-light"><a href="{% url 'stock_detail' el.id %}" class="nav-link px-2 link-dark">{{el.name}}</a></td>
+                                <td class="table-light"><a href="{% url 'stock_detail' el.id %}" class="nav-link px-2 link-dark">{{el.room}}</a></td>
                             </tr>
                         {% endfor %}
                             </tbody>

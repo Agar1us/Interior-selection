@@ -5,7 +5,7 @@ from django.views.generic import ListView
 from django.urls import reverse
 from .forms import *
 from .models import *
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 def index(request):
@@ -27,6 +27,7 @@ def cabinets(request):
 def faqs(request):
     return render(request, 'main/faqs.html')
 
+
 class DisplacementView(View):
     # @method_decorator(login_required)
     def post(self, request):
@@ -42,6 +43,7 @@ class DisplacementView(View):
         object = None
         displace = Displacement.objects.all()
         return render(request, 'main/displacement.html', {'displace': displace, 'object': object})
+
 
 class CreateRoomView(View):
     # @method_decorator(login_required)
@@ -71,15 +73,6 @@ class ListInterior(ListView):
         return Interior.objects.filter(exist=True)
 
 
-class DeleteInterior(View):
-    def get(self, id):
-        interior = Interior.objects.filter(id=id, exist=True)
-        if interior:
-            interior.exist = False
-            interior.save()
-        return redirect('stock')
-
-
 class DetailInterior(View):
     context = {}
 
@@ -90,11 +83,21 @@ class DetailInterior(View):
             self.context['exist'] = False
         else:
             self.context['object'] = interior
-            self.context['displace'] = Displacement.objects.filter(object=interior)
-        return redirect(request, 'main/detail_interior.html', self.context)
+            self.context['displace'] = Displacement.objects.filter(object=interior[0])
+        return render(request, 'main/detail_interior.html', self.context)
 
     def post(self, request, id):
         if request.POST.get('delete'):
-            return redirect(reverse('delete_stock', kwargs={'id': id}))
+            return redirect(reverse('stock_delete', kwargs={'id': id}))
         if request.POST.get('update'):
-            return redirect(reverse('update_stock', kwargs={'id': id}))
+            return redirect(reverse('stock_delete', kwargs={'id': id}))
+
+
+class DeleteInterior(View):
+    def get(self, request, id):
+        interior = get_object_or_404(Interior, id=id)
+        interior.exist = False
+        interior.save()
+        return redirect('stock')
+
+
