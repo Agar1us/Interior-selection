@@ -71,6 +71,15 @@ class ListInterior(ListView):
         return Interior.objects.filter(exist=True)
 
 
+class DeleteInterior(View):
+    def get(self, id):
+        interior = Interior.objects.filter(id=id, exist=True)
+        if interior:
+            interior.exist = False
+            interior.save()
+        return redirect('stock')
+
+
 class DetailInterior(View):
     context = {}
 
@@ -81,10 +90,11 @@ class DetailInterior(View):
             self.context['exist'] = False
         else:
             self.context['object'] = interior
+            self.context['displace'] = Displacement.objects.filter(object=interior)
         return redirect(request, 'main/detail_interior.html', self.context)
 
     def post(self, request, id):
-        if (request.POST.get('delete')):
-            return redirect(reverse('delete_room', kwargs={'id': id}))
-        if (request.POST.get('update')):
-            return redirect(reverse('update_room', kwargs={'id': id}))
+        if request.POST.get('delete'):
+            return redirect(reverse('delete_stock', kwargs={'id': id}))
+        if request.POST.get('update'):
+            return redirect(reverse('update_stock', kwargs={'id': id}))
