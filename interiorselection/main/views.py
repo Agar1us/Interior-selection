@@ -12,9 +12,6 @@ def index(request):
 
 
 def about(request):
-    rooms = Room.objects.all()
-    for el in rooms:
-        print(str(el.id) + str(el.name))
     return render(request, 'main/about.html')
 
 
