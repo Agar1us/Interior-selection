@@ -23,17 +23,17 @@
                         <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm row justify-content-center">
                             <div class="col-md-8">
                                 <div class="form-group m-2">
-                                    <label for="id_name">Название объекта интерьера:</label>
-                                    <input type="text" class="form-control" id="id_name" aria-describedby="nameHelp" name="name" value="{{object.name}}" maxlength="40" required="">
+                                    <label>Название объекта интерьера:</label>
+                                    {{form.name}}
                                     <small id="nameHelp" class="form-text text-muted">Поле названия объекта интерьера должно быть заполнено</small>
                                 </div>
                                 <div class="form-group m-2" >
-                                    <label for="id_description">Описание:</label>
-                                    <textarea class="form-control" id="id_description" name="description" cols="40" rows="7">{{object.description}}</textarea>
+                                    <label for=>Описание:</label>
+                                    {{form.description}}
                                 </div>
                                 <div class="form-group m-2" >
                                     <label>Комната:</label>
-                                        <div class="mdb-select">{{ form.room }}</div>
+                                    {{ form.room }}
                                 </div>
                                 <button class="btn btn-primary my-3" type="sumbit">Сохранить</button>
                             </div>

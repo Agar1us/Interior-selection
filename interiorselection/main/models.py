@@ -4,7 +4,7 @@ from PIL import Image
 class Room(models.Model):
 
     name = models.CharField(unique=True, max_length=40)
-    description = models.TextField(null=True, blank=True, max_length=100)
+    description = models.TextField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to='photos/')
     exist = models.BooleanField(default=True, blank=True)
 

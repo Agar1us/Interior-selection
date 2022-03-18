@@ -14,37 +14,48 @@
     <main>
         <section class="py-5 text-center container">
             <div class="row py-lg-6">
-                <div class="col-lg-6 col-md-8 mx-auto">
+                <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm">
                     <h1 class="fw-dark">Список объектов интерьера</h1>
+                    {% if user.is_authenticated %}
+                        <div class="dropdown py-4">
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                Действия с инвентарём
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                                <li><a class="dropdown-item active" href="">Добавить инвентарь</a></li>
+                                <li><a class="dropdown-item" href="{% url 'displacement' %}">Просмотр переходов</a></li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% if object_list %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Название предмета</th>
+                                    <th scope="col">Кабинет, в котором находится</th>
+                                </tr>
+                              </thead>
+                                <tbody>
+                            {% for el in object_list %}
+                                <tr>
+                                    <td>{{el.id}}</td>
+                                    <td class="table-light"><a href="{% url 'stock_detail' el.id %}" class="nav-link px-2 link-dark">{{el.name}}</a></td>
+                                    <td class="table-light"><a href="{% url 'room' el.room.id %}" class="nav-link px-2 link-dark">{{el.room}}</a></td>
+                                </tr>
+                            {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+                    {% else %}
+                            <p>Нету созданных предметов интерьера</p>
+                    {% endif %}
+                    <p class="py-2">
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
+                    </p>
                 </div>
-                {% if object_list %}
-                    <form method="post">
-                        {% csrf_token %}
-                        <table class="table">
-                          <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Название предмета</th>
-                                <th scope="col">Кабинет, в котором находится</th>
-                            </tr>
-                          </thead>
-                            <tbody>
-                        {% for el in object_list %}
-                            <tr>
-                                <td><button class="btn btn-light" style="padding:0" type="submit" name="object" value="{{el.id}}">{{el.id}}</button></td>
-                                <td class="table-light"><a href="{% url 'stock_detail' el.id %}" class="nav-link px-2 link-dark">{{el.name}}</a></td>
-                                <td class="table-light"><a href="{% url 'room' el.room.id %}" class="nav-link px-2 link-dark">{{el.room}}</a></td>
-                            </tr>
-                        {% endfor %}
-                            </tbody>
-                        </table>
-                    </form>
-                {% else %}
-                        <p>Нету созданных предметов интерьера</p>
-                {% endif %}
-                <p class="py-2">
-                    <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
-                </p>
             </div>
         </section>
 

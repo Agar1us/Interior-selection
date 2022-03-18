@@ -1,6 +1,5 @@
 from .models import *
-from django.forms import ModelForm, TextInput, Textarea, FileInput, CheckboxInput
-from django.forms import ModelForm, TextInput, Textarea, ModelChoiceField
+from django.forms import ModelForm, TextInput, Textarea, FileInput, Select
 
 
 class RoomForm(ModelForm):
@@ -40,5 +39,8 @@ class InteriorForm(ModelForm):
                 'class': 'form-control py-1',
                 'cols': '40',
                 'rows': '7'
+            }),
+            'room': Select(attrs={
+                'class': 'form-control py-1',
             }),
         }

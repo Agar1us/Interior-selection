@@ -157,6 +157,7 @@ class DetailInterior(View):
         self.context['displace'] = Displacement.objects.filter(object=interior)
         return render(request, 'main/detail_interior.html', self.context)
 
+    @method_decorator(login_required)
     def post(self, request, id):
         if request.POST.get('delete'):
             return redirect(reverse('stock_delete', kwargs={'id': id}))
@@ -185,6 +186,7 @@ class UpdateInterior(UpdateView):
 
 
 class DeleteInterior(View):
+    @method_decorator(login_required)
     def get(self, request, id):
         interior = get_object_or_404(Interior, id=id)
         interior.exist = False
