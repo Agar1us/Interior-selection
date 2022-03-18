@@ -1,5 +1,7 @@
 from .models import *
 from django.forms import ModelForm, TextInput, Textarea, FileInput, CheckboxInput
+from django.forms import ModelForm, TextInput, Textarea, ModelChoiceField
+
 
 class RoomForm(ModelForm):
 
@@ -20,11 +22,12 @@ class RoomForm(ModelForm):
             }),
         }
 
+
 class InteriorForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
-        super(RoomForm, self).__init__(*args, **kwargs)
-        self.fields['room'].queryset = Room.objects.exclude(exist=False)
+        super(InteriorForm, self).__init__(*args, **kwargs)
+        self.fields['room'].queryset = Room.objects.filter(exist=True)
 
     class Meta:
         model = Interior
@@ -37,8 +40,5 @@ class InteriorForm(ModelForm):
                 'class': 'form-control py-1',
                 'cols': '40',
                 'rows': '7'
-            }),
-            'room': CheckboxInput(attrs={
-                'class': 'form-control py-1',
             }),
         }
