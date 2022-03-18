@@ -1,5 +1,5 @@
 from .models import *
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, ModelChoiceField
 
 
 class RoomForm(ModelForm):
@@ -9,13 +9,23 @@ class RoomForm(ModelForm):
         fields = ['name', 'description', 'image']
         widgets = {}
 
+
 class InteriorForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
-        super(RoomForm, self).__init__(*args, **kwargs)
-        self.fields['room'].queryset = Room.objects.exclude(exist=False)
+        super(InteriorForm, self).__init__(*args, **kwargs)
+        self.fields['room'].queryset = Room.objects.filter(exist=True)
 
     class Meta:
         model = Interior
         fields = ['name', 'description', 'room']
-        widgets = {}
+        widgets = {
+            'name': TextInput(attrs={
+                'class': 'form-control py-1',
+            }),
+            'description': Textarea(attrs={
+                'class': 'form-control py-1',
+                'cols': '40',
+                'rows': '7'
+            }),
+        }

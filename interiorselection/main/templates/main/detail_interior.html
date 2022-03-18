@@ -56,8 +56,8 @@
                         {% for el in displace %}
                             <tr>
                                 <td><button class="btn btn-light" style="padding:0" type="submit" name="object" value="{{el.object.name}}">{{el.object.name}}</button></td>
-                                <td class="table-light">{{el.to_room.name}}</td>
                                 <td class="table-light">{{el.from_room.name}}</td>
+                                <td class="table-light">{{el.to_room.name}}</td>
                                 <td class="table-light">{{el.date}}</td>
                             </tr>
                         {% endfor %}

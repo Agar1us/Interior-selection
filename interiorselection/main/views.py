@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseNotFound
 from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 from django.urls import reverse
 from .forms import *
 from .models import *
@@ -32,7 +33,7 @@ class DisplacementView(View):
     # @method_decorator(login_required)
     def post(self, request):
         object = request.POST.get('object')
-        if object == None:
+        if object is None:
             displace = Displacement.objects.all()
         else:
             displace = Displacement.objects.filter(object__name=object)
@@ -77,20 +78,36 @@ class DetailInterior(View):
     context = {}
 
     def get(self, request, id):
-        interior = Interior.objects.filter(id=id, exist=True)
-        self.context['exist'] = True
-        if interior is None:
-            self.context['exist'] = False
-        else:
-            self.context['object'] = interior
-            self.context['displace'] = Displacement.objects.filter(object=interior[0])
+        interior = get_object_or_404(Interior, id=id, exist=True)
+        self.context['object'] = interior
+        self.context['displace'] = Displacement.objects.filter(object=interior)
         return render(request, 'main/detail_interior.html', self.context)
 
     def post(self, request, id):
         if request.POST.get('delete'):
             return redirect(reverse('stock_delete', kwargs={'id': id}))
         if request.POST.get('update'):
-            return redirect(reverse('stock_delete', kwargs={'id': id}))
+            return redirect(reverse('stock_update', kwargs={'id': id}))
+
+
+class UpdateInterior(UpdateView):
+    model = Interior
+    form_class = InteriorForm
+    template_name = 'main/update_interior.html'
+    pk_url_kwarg = 'id'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(exist=True)
+
+    def form_valid(self, form):
+        self.object = form.save()
+        displacement = Displacement.objects.filter(object=self.object).last()
+        print(self.object.room, displacement.to_room)
+        if self.object.room != displacement.to_room:
+            displace = Displacement(object=self.object, from_room=displacement.to_room,
+                                        to_room=self.object.room)
+            displace.save()
+        return redirect('stock_detail', self.kwargs['id'])
 
 
 class DeleteInterior(View):
@@ -99,5 +116,3 @@ class DeleteInterior(View):
         interior.exist = False
         interior.save()
         return redirect('stock')
-
-
