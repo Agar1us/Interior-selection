@@ -51,11 +51,13 @@
                         <p>Нет записей об перемещениях</p>
                 {% endif %}
                 <p>
+                    {% if id != None %}
                     <form method="get">
-                        <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
-                        {% if id != None %}
-                            <button class="btn btn-secondary my-2" type="submit">Вернуться</button>
-                        {% endif %}
+                        <button class="btn btn-outline-secondary my-2" type="submit">Сбросить</button>
+                    {% else %}
+                        <a href="{% url 'stock' %}" class="btn btn-outline-secondary my-2">Вернуться</a>
+                    {% endif %}
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
                     </form>
                 </p>
             </div>
