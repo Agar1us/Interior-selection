@@ -25,18 +25,18 @@
                     <div class="col">
                         <div>
                             <h1 class="fw-dark">{{room.name}}</h1>
-                        {% if user.is_authenticated %}
-                            <div class="dropdown">
-                                <form method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Изменить комнату</button>
-                                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
-                                        <li><button class="dropdown-item" type="submit" name="update" value="True">Редактирование комнаты</button></li>
-                                        <li><button class="dropdown-item" type="submit" name="delete" value="True">Удалить комнату</button></li>
-                                    </ul>
-                                </form>
-                            </div>
-                        {% endif %}
+                            {% if user.is_authenticated %}
+                                <div class="dropdown">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Изменить комнату</button>
+                                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                                            <li><button class="dropdown-item" type="submit" name="update" value="True">Редактирование комнаты</button></li>
+                                            <li><button class="dropdown-item" type="submit" name="delete" value="True">Удалить комнату</button></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            {% endif %}
                         </div>
                         {% if room.description %}
                             <div class="py-3">
@@ -57,13 +57,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {% for el in interior %}
-                            <tr>
-                                <td class="table-light align-middle">{{el.id}}</td>
-                                <td class="table-light text-break align-middle">{{el.name}}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
+                            {% for el in interior %}
+                                <tr>
+                                    <td class="table-light align-middle">{{el.id}}</td>
+                                    <td class="table-light text-break align-middle">{{el.name}}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
                     </table>
                 {% endif %}
              </div>

@@ -22,6 +22,7 @@ class RoomForm(ModelForm):
         }
 
 
+
 class InteriorForm(ModelForm):
 
     def __init__(self, *args, **kwargs):

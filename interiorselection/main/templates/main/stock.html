@@ -13,8 +13,8 @@
 {% block content %}
     <main>
         <section class="py-5 text-center container">
-            <div class="row py-lg-6">
-                <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm">
+            <div class="row py-md-4">
+                <div class="col-md-6 offset-md-3 py-1">
                     <h1 class="fw-dark">Список объектов интерьера</h1>
                     {% if user.is_authenticated %}
                         <div class="dropdown py-4">
@@ -27,6 +27,10 @@
                             </ul>
                         </div>
                     {% endif %}
+                </div>
+            </div>
+            <div class="row py-lg-6">
+                <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm">
                     {% if object_list %}
                         <form method="post">
                             {% csrf_token %}
@@ -52,10 +56,10 @@
                     {% else %}
                             <p>Нету созданных предметов интерьера</p>
                     {% endif %}
-                    <p class="py-2">
-                        <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
-                    </p>
                 </div>
+                <p class="py-2">
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
+                </p>
             </div>
         </section>
 

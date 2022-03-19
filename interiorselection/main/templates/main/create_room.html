@@ -24,16 +24,16 @@
                             <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm row justify-content-center">
                                 <div class="col-md-8">
                                     <div class="form-group m-2">
-                                        <label for="id_name">Название комнаты:</label>
+                                        <label for="id_name" class="py-1">Название комнаты:</label>
                                         {{ form.name }}
                                         <small class="form-text text-muted">Поле названия комнаты должно быть заполненно</small>
                                     </div>
                                     <div class="form-group m-2" >
-                                        <label>Описание:</label>
+                                        <label class="py-2">Описание:</label>
                                         {{ form.description }}
                                     </div>
-                                    <div class="form-group m-2">
-                                        <label>Фотография:</label>
+                                    <div class="form-group m-2 py-1">
+                                        <label class="py-2">Фотография:</label>
                                         {{ form.image }}
                                     </div>
                                     <button class="btn btn-primary my-3" type="sumbit">Добавить комнату</button>
