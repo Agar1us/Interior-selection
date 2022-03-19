@@ -1,0 +1,56 @@
+{% extends 'main/base.html '%}
+
+{% block title %}
+Страница для добавления кабинета
+{% endblock %}
+{% block links %}
+                <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
+                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
+                <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
+                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+                <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-6">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-dark">Изменить комнату</h1>
+                </div>
+                <form enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <div class="container py-lg-3">
+                        <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="form-group m-2">
+                                    <label for="id_name">Название комнаты:</label>
+                                    <input type="text" class="form-control" id="id_name" aria-describedby="nameHelp" name="name" value="{{room.name}}" maxlength="40" required="">
+                                    <small id="nameHelp" class="form-text text-muted">Поле названия комнаты должно быть заполненно</small>
+                                </div>
+                                <div class="form-group m-2" >
+                                    <label for="id_description">Описание:</label>
+                                    <textarea class="form-control" id="id_description" name="description" cols="40" rows="7">{{room.description}}</textarea>
+                                </div>
+                                <div class="form-group m-2">
+                                    {% if room.image %}
+                                        <label for="id_image">Фотография</label>
+                                        <img src="{{room.image.url}}">
+                                    {% else %}
+                                        <p class="file-upload">На данный момент фотографии нет</p>
+                                    {% endif %}
+                                        <input id="id_image" type="file" class="form-control-file" name="image" accept="image/*">
+                                </div>
+                                <button class="btn btn-primary my-3" type="sumbit">Сохранить</button>
+                                <p>{{error}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <p class="py-3">
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
+                </p>
+            </div>
+        </section>
+    </main>
+{% endblock %}
