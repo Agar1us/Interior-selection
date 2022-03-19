@@ -14,11 +14,16 @@
     <main>
         <section class="py-5 text-center container">
             <div class="row py-lg-6">
-                <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm">
+                <div class="col-md-6 p-3 py-2 offset-md-3">
                     <h1 class="fw-dark">Кабинеты</h1>
                     {% if user.is_authenticated %}
                         <a href="{% url 'create_room' %}" class="btn btn-outline-primary my-2">Добавить запись</a>
                     {% endif %}
+                </div>
+            </div>
+            <br>
+            <div class="row py-lg-6">
+                <div class="col-md-6 p-2 py-5 offset-md-3 border border-2 rounded shadow-sm">
                     {% if rooms %}
                         <form method="post">
                             {% csrf_token %}
@@ -30,16 +35,16 @@
                                 </tr>
                               </thead>
                                 <tbody>
-                            {% for el in rooms %}
-                                <tr>
-                                    <td class="table-light align-middle"><button class="btn btn-light" style="padding:0" type="submit" name="id" value="{{el.id}}">{{el.name}}</button></td>
-                                    {% if not el.description %}
-                                        <td class="table-light text-break align-middle">Нет описания</td>
-                                    {% else %}
-                                        <td class="table-light text-break align-middle">{{el.description}}</td>
-                                    {% endif %}
-                                </tr>
-                            {% endfor %}
+                                    {% for el in rooms %}
+                                        <tr>
+                                            <td class="table-light align-middle"><button class="btn btn-light" style="padding:0" type="submit" name="id" value="{{el.id}}">{{el.name}}</button></td>
+                                            {% if not el.description %}
+                                                <td class="table-light text-break align-middle">Нет описания</td>
+                                            {% else %}
+                                                <td class="table-light text-break align-middle">{{el.description}}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </form>
@@ -47,7 +52,7 @@
                             <p>Нет записей о комнатах</p>
                     {% endif %}
                 </div>
-                <p class="py-2">
+                <p class="py-4">
                     <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
                 </p>
             </div>

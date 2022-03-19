@@ -7,7 +7,7 @@
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
                 <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
                 <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
-                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
                 <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
 {% endblock %}
 {% block content %}
@@ -52,11 +52,14 @@
                 {% endif %}
                 <p>
                     <form method="get">
-                        <a href="{% url 'home' %}" class="btn btn-secondary my-2">На главную</a>
-                        {% if id != None %}
-                            <button class="btn btn-secondary my-2" type="submit">Вернуться</button>
-                        {% endif %}
+<!--                        {% if id == None %}-->
+                        <a href="{% url 'stock' %}" class="btn btn-outline-secondary my-2">Вернуться</a>
+<!--                            <button class="btn btn-secondary my-2" type="submit">Вернуться</button>-->
+<!--                        {% endif %}-->
                     </form>
+                    <p>
+                        <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
+                    </p>
                 </p>
             </div>
         </section>

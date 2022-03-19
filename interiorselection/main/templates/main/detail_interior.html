@@ -5,7 +5,7 @@
 {% endblock %}
 {% block links %}
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
-                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
+                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-dark">Кабинеты</a></li>
                 <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
 <!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
                 <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
@@ -17,19 +17,19 @@
                 <div class="row">
                     <div class="col">
                         <div>
-                            <h1 class="fw-dark">{{object.name}}</h1>
-                        {% if user.is_authenticated %}
-                            <div class="dropdown">
-                                <form method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Изменить объект интерьера</button>
-                                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
-                                        <li><button class="dropdown-item" type="submit" name="update" value="True">Редактировать объект интерьера</button></li>
-                                        <li><button class="dropdown-item" type="submit" name="delete" value="True">Удалить объект интерьера</button></li>
-                                    </ul>
-                                </form>
-                            </div>
-                        {% endif %}
+                            <h1 class="fw-dark py-2">{{object.name}}</h1>
+                            {% if user.is_authenticated %}
+                                <div class="dropdown">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Изменить объект интерьера</button>
+                                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                                            <li><button class="dropdown-item" type="submit" name="update" value="True">Редактировать объект интерьера</button></li>
+                                            <li><button class="dropdown-item" type="submit" name="delete" value="True">Удалить объект интерьера</button></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            {% endif %}
                         </div>
                         {% if object.description %}
                             <div class="py-3">

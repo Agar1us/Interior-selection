@@ -7,7 +7,7 @@
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
                 <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
                 <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
-                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>
+<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
                 <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
 {% endblock %}
 {% block content %}
@@ -25,7 +25,7 @@
                                 <div class="form-group m-2">
                                     <label for="id_name">Название комнаты:</label>
                                     <input type="text" class="form-control" id="id_name" aria-describedby="nameHelp" name="name" value="{{room.name}}" maxlength="40" required="">
-                                    <small id="nameHelp" class="form-text text-muted">Поле названия комнаты должно быть заполненно</small>
+                                    <small id="nameHelp" class="form-text text-muted">Поле названия комнаты должно быть заполнено</small>
                                 </div>
                                 <div class="form-group m-2" >
                                     <label for="id_description">Описание:</label>
