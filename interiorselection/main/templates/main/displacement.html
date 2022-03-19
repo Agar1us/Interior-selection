@@ -35,11 +35,11 @@
                             <tr>
                                 <td><button class="btn btn-light" style="padding:0" type="submit" name="id" value="{{el.object.id}}">{{el.object.id}}</button></td>
                                 <td class="table-light">{{el.object.name}}</td>
-                            {% if el.to_room %}
-                                <td class="table-light">{{el.to_room.name}}</td>
+                            {% if el.from_room %}
                                 <td class="table-light">{{el.from_room.name}}</td>
+                                <td class="table-light">{{el.to_room.name}}</td>
                             {% else %}
-                                <td class="table-light" colspan="2">Предмет был впервые добавлен в {{el.from.name}}</td>
+                                <td class="table-light" colspan="2">Появился в комнате с названием {{el.to_room.name}}</td>
                             {% endif %}
                                 <td class="table-light">{{el.date}}</td>
                             </tr>
