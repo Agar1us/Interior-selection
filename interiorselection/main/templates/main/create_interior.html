@@ -1,0 +1,49 @@
+{% extends 'main/base.html '%}
+
+{% block title %}
+Страница для редактирования объекта интерьера
+{% endblock %}
+{% block links %}
+                <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Главная</a></li>
+                <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-secondary">Кабинеты</a></li>
+                <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
+<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
+                <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
+{% endblock %}
+{% block content %}
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-6">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-dark">Создать объект интерьера</h1>
+                </div>
+                <form enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    <div class="container py-lg-3">
+                        <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="form-group m-2">
+                                    <label>Название объекта интерьера:</label>
+                                    {{form.name}}
+                                    <small id="nameHelp" class="form-text text-muted">Поле названия объекта интерьера должно быть заполнено</small>
+                                </div>
+                                <div class="form-group m-2" >
+                                    <label for=>Описание:</label>
+                                    {{form.description}}
+                                </div>
+                                <div class="form-group m-2" >
+                                    <label>Комната:</label>
+                                    {{ form.room }}
+                                </div>
+                                <button class="btn btn-primary my-3" type="sumbit">Сохранить</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <p class="py-3">
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
+                </p>
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -8,6 +8,7 @@ urlpatterns = [
     path('stock/<int:id>/', views.DetailInterior.as_view(), name='stock_detail'),
     path('stock/<int:id>/update', views.UpdateInterior.as_view(), name='stock_update'),
     path('stock/<int:id>/delete', views.DeleteInterior.as_view(), name='stock_delete'),
+    path('stock/create', views.CreateInterior.as_view(), name='stock_create'),
     path('faqs', views.faqs, name='faqs'),
     path('displacement', views.DisplacementView.as_view(), name='displacement'),
     path('cabinets', views.CabinetsView.as_view(), name='cabinets'),
