@@ -19,9 +19,11 @@
                     {% if user.is_authenticated %}
                         <div class="dropdown py-4">
                             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                Действия с инвентарём
+                                Действия с инвентарем
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                                <li><h6 class="dropdown-header">Выберите действие</h6></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item active" href="">Добавить инвентарь</a></li>
                                 <li><a class="dropdown-item" href="{% url 'displacement' %}">Просмотр переходов</a></li>
                             </ul>
@@ -29,6 +31,7 @@
                     {% endif %}
                 </div>
             </div>
+            <br>
             <div class="row py-lg-6">
                 <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm">
                     {% if object_list %}

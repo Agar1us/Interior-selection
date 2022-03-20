@@ -7,7 +7,6 @@
                 <li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Главная</a></li>
                 <li><a href="{% url 'cabinets' %}" class="nav-link px-2 link-dark">Кабинеты</a></li>
                 <li><a href="{% url 'stock' %}" class="nav-link px-2 link-dark">Инвентарь</a></li>
-<!--                <li><a href="{% url 'faqs' %}" class="nav-link px-2 link-dark">FAQs</a></li>-->
                 <li><a href="{% url 'contacts' %}" class="nav-link px-2 link-dark">Контакты</a></li>
 {% endblock %}
 {% block content %}
@@ -19,7 +18,6 @@
                     <div class="=col-lg-8 col-md-8 mx-auto">
                         {% if user.is_authenticated %}
                             <p class="lead text-dark p-2">Как зарегистрированному пользователю, вам доступны для просмотра кабинеты и инвентарь. Нажмите одну из кнопок ниже, чтобы открыть страницы просмотра и изменений</p>
-<!--                            <p class="lead text-dark"></p>-->
                         {% else %}
                             <p class="lead text-dark">Вам доступны для просмотра кабинеты и инвентарь, нажмите одну из кнопок ниже, чтобы открыть страницы просмотра</p>
                         {% endif %}
@@ -36,10 +34,20 @@
                 </div>
             </div>
         </section>
-        <br>
-        <div class="container-xl py-lg-5">
-            <div class="row-lg-6 py-lg-5"></div>
+        <div class="py-xl-5 text-start container">
+            <div class="row py-xl-5 text-center">
+                <div class="col-sm-12 col-md-offset-1 col-md-10"></div>
+            </div>
+            <div class="py-4 text-center container" style="height: auto">
+                <div class="container">
+                    <div class="row gx-5">
+                        <div class="col h-100">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <br>
         <br>
         <section>
             <div class="py-xl-5 text-start container">
@@ -47,69 +55,83 @@
                     <div class="col-sm-12 col-md-offset-1 col-md-10"></div>
                         <h1>О проекте</h1>
                 </div>
-                <div class="py-1 text-center container">
+                <div class="py-4 text-center container" style="height: auto">
                     <div class="container">
                         <div class="row gx-5">
-                            <div class="col">
-                                <div class="p-3 border rounded overflow-hidden shadow-sm bg-white">
+                            <div class="col h-100">
+                                <div class="p-3 border rounded overflow-hidden shadow-sm flex-md-row h-100">
                                     <h2 class="text-dark">Цели</h2>
-                                    <div class="py-2 px-4 text-start text-dark" style="height: 170px">
-                                        <p>Что-то рассказать о целях проекта, обязательно придумать, а то будет нехорошо</p>
+                                    <div class="py-2 px-4 text-start text-dark">
+                                        <p>
+                                            &#128505; Создать базу данных, содержащую информацию о расположении инвентаря в кабинетах.
+                                        </p>
+                                        <p>
+                                            &#128505; Создать сайт, с помощью которого пользователь сможет работать БД.
+                                        </p>
+                                        <p>
+                                            &#128505; Ознакомиться с фреймворком Django, языком верстки HTML, фреймворком Bootstrap
+                                        </p>
+                                        <p>
+                                            &#128505; Оптимизировать командную работу, используя веб-сервис GitHub, основанный на системе контроля версий Git.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="p-3 border rounded overflow-hidden shadow-sm bg-white">
+                                <div class="p-3 border rounded overflow-hidden shadow-sm flex-md-row h-100">
                                     <h2>Задачи</h2>
-                                    <div class="py-2 px-4 text-start" style="height: 170px">
+                                    <div class="py-2 px-4 text-start">
                                         <h5>Мы выполнили такие задачи:</h5>
                                         <ul class="list-start">
-
-                                                <li>Сделать сайт</li>
-                                                <li>Сделать БДшку</li>
-                                                <li>Сделать регистрацию</li>
-                                                <li>Сделать редактирование объектов БД с сайта</li>
-                                                <li>Сделать что-то (придумать)</li>
-
+                                                <li class="py-2">Освоить технологии для реализации проекта</li>
+                                                <li class="py-2">Создать базу данных</li>
+                                                <li class="py-2">Сделать сайт с удобным интерфейсом</li>
+                                                <li class="py-2">Сделать возможным редактирование объектов базы данных с сайта</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="py-xl-1 text-start container">
+                <div class="py-2 text-center container" style="height: auto">
+                    <div class="container">
+                        <div class="row gx-5">
                             <div class="row gy-4 ps-4 pe-0">
                                 <div class="col-md-12 offset-md-0 text-start ">
-                                    <div class="col border rounded shadow-sm">
+                                    <div class="col border rounded shadow-sm flex-md-row h-100">
                                         <h3 class="p-4">Что использовали для реализации проекта</h3>
-                                            <div class="clearfix px-4">
-                                                <h5>То что использовали 1 (django)</h5>
-                                                <p>
-                                                    A paragraph of placeholder text. We're using it here to show the use of the clearfix class. We're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image.
-                                                </p>
-                                                <h5>То что использовали 2 (bootstrap)</h5>
-                                                <p>
-                                                    As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look with some actual content in here, rather than just this boring placeholder text that goes on and on, but actually conveys no tangible information at. It simply takes up space and should not really be read.
-                                                </p>
-                                                <h5>То что использовали 3 (etc)</h5>
-                                                <p>
-                                                    And yet, here you are, still persevering in reading this placeholder text, hoping for some more insights, or some hidden easter egg of content. A joke, perhaps. Unfortunately, there's none of that here.
-                                                </p>
-                                                <br>
-                                            </div>
+                                        <dl class="dl-horizontal px-4">
+                                            <dt>Git</dt>
+                                            <dd class="py-1 px-3 text-black-50">Используется для оптимизации работы команды. Может хранить старые версии проекта, что позволяет "откатиться" назад в случае неудачи.</dd>
+                                            <dt>Django</dt>
+                                            <dd class="py-1 px-3 text-black-50">Позволяет упростить разработку благодаря встроенным шаблонам.</dd>
+                                            <dt>HTML</dt>
+                                            <dd class="py-1 px-3 text-black-50">Применяется для создания видимой части сайтов, т.е. является основой Frontend'а проекта.</dd>
+                                        </dl>
+                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <div class="row gy-4 ps-4 pe-0">
                                 <div class="col-md-12 offset-md-0 text-start ">
-                                    <div class="col border rounded shadow-sm">
+                                    <div class="col border rounded shadow-sm flex-md-row h-100">
                                         <h3 class="p-4">Что изучили, пока делали проект</h3>
                                         <dl class="dl-horizontal px-4">
-                                            <dt>HTML</dt>
-                                            <dd>Стандартный язык разметки документов во Всемирной паутине.</dd>
-                                            <dt>CSS</dt>
-                                            <dd>Формальный язык описания внешнего вида документа, написанного с использованием языка разметки.</dd>
-                                            <dt>JavaScript</dt>
-                                            <dd>Прототипно-ориентированный сценарный язык программирования. Является диалектом языка ECMAScript.</dd>
+                                            <dt>Git</dt>
+                                            <dd class="py-1 px-3 text-black-50">Система управления и контроля версий.</dd>
                                             <dt>Django</dt>
-                                            <dd>Бесплатный и свободный фреймворк для веб-приложений, написанный на Python.</dd>
+                                            <dd class="py-1 px-3 text-black-50">Бесплатный и свободный фреймворк для веб-приложений, написанный на Python.</dd>
+                                            <dt>HTML</dt>
+                                            <dd class="py-1 px-3 text-black-50">Стандартный язык разметки документов во Всемирной паутине.</dd>
+                                            <dt>CSS</dt>
+                                            <dd class="py-1 px-3 text-black-50">Формальный язык описания внешнего вида документа, написанного с использованием языка разметки.</dd>
+                                            <dt>JavaScript</dt>
+                                            <dd class="py-1 px-3 text-black-50">Прототипно-ориентированный сценарный язык программирования. Является диалектом языка ECMAScript.</dd>
+                                            <dt>Bootstrap</dt>
+                                            <dd class="py-1 px-3 text-black-50">Фреймворк, включающий в себя набор инструментов для работы создания сайтов и приложений.</dd>
                                         </dl>
                                         <br>
                                     </div>

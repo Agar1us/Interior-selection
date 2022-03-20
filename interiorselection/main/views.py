@@ -8,10 +8,6 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 
-def index(request):
-    return render(request, 'main/index.html')
-
-
 def about(request):
     return render(request, 'main/about.html')
 
@@ -22,10 +18,6 @@ def mainpg(request):
 
 def stock(request):
     return render(request, 'main/stock.html')
-
-
-def faqs(request):
-    return render(request, 'main/faqs.html')
 
 
 class CabinetsView(View):
