@@ -1,5 +1,5 @@
 from django.views import View
-from django.views.generic import ListView, UpdateView
+from django.views.generic import ListView, UpdateView, CreateView
 from django.urls import reverse
 from .forms import *
 from .models import *
@@ -169,12 +169,27 @@ class UpdateInterior(UpdateView):
     def form_valid(self, form):
         self.object = form.save()
         displacement = Displacement.objects.filter(object=self.object).last()
-        print(self.object.room, displacement.to_room)
         if self.object.room != displacement.to_room:
             displace = Displacement(object=self.object, from_room=displacement.to_room,
                                     to_room=self.object.room)
             displace.save()
         return redirect('stock_detail', self.kwargs['id'])
+
+
+class CreateInterior(CreateView):
+    model = Interior
+    form_class = InteriorForm
+    template_name = 'main/create_interior.html'
+    pk_url_kwarg = 'id'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(exist=True)
+
+    def form_valid(self, form):
+        self.object = form.save()
+        displacement = Displacement(object=self.object, to_room=self.object.room)
+        displacement.save()
+        return redirect('stock')
 
 
 class DeleteInterior(View):
