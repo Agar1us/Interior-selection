@@ -16,10 +16,6 @@ def mainpg(request):
     return render(request, 'main/mainpg.html')
 
 
-def stock(request):
-    return render(request, 'main/stock.html')
-
-
 class CabinetsView(View):
 
     def post(self, request):
